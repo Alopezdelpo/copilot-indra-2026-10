@@ -33,29 +33,91 @@ button, input { font: inherit; }
   padding: 88px 0 32px;
 }
 
-.page-header { margin-bottom: 38px; }
+.page-header {
+  position: relative;
+  display: flex;
+  min-height: 270px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  margin-bottom: 26px;
+  padding: 38px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 82% 20%, rgba(119, 166, 132, 0.3), transparent 34%),
+    linear-gradient(125deg, #1d4539 0%, #2f6653 62%, #3b765f 100%);
+  box-shadow: 0 18px 42px rgba(32, 63, 49, 0.2);
+}
+
+.page-header::before,
+.page-header::after {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.page-header::before { top: -125px; right: -72px; width: 350px; height: 350px; }
+.page-header::after { top: -82px; right: -29px; width: 265px; height: 265px; }
+.header-copy { position: relative; z-index: 1; max-width: 370px; }
 
 .eyebrow {
-  margin: 0 0 12px;
-  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 18px;
+  color: #d7e8d9;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+
+.eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: #e8a88f; box-shadow: 0 0 12px rgba(232, 168, 143, 0.75); }
 
 h1, h2, p { margin-top: 0; }
 
 h1 {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(42px, 8vw, 64px);
-  line-height: 1.08;
+  font-size: clamp(38px, 6vw, 54px);
+  letter-spacing: -0.055em;
+  line-height: 1.04;
 }
 
-h1 span { color: var(--coral); }
+h1 span { color: #f0b09a; }
 
-.intro { margin-bottom: 0; color: var(--muted); font-size: 16px; }
+.intro { max-width: 330px; margin-bottom: 0; color: #e0ebe3; font-size: 15px; line-height: 1.65; }
+
+.header-art { position: relative; z-index: 1; width: 190px; height: 185px; flex: 0 0 190px; margin: 0 6px 0 20px; }
+.art-orbit { position: absolute; top: 0; left: 4px; width: 176px; height: 176px; border: 1px solid rgba(225, 239, 226, 0.22); border-radius: 50%; }
+.art-card {
+  position: absolute;
+  top: 24px;
+  left: 11px;
+  width: 164px;
+  padding: 16px 15px 13px;
+  border: 1px solid rgba(32, 42, 39, 0.08);
+  border-radius: 12px;
+  background: #fffefa;
+  box-shadow: 0 14px 28px rgba(16, 40, 30, 0.22);
+  transform: rotate(5deg);
+}
+
+.art-card-heading { display: flex; justify-content: space-between; margin-bottom: 15px; color: #8b948d; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; }
+.art-dots { color: #bbc1ba; letter-spacing: 0.12em; }
+.art-row { display: flex; align-items: center; gap: 9px; margin-top: 11px; }
+.art-check { display: grid; width: 17px; height: 17px; flex: 0 0 17px; place-items: center; border-radius: 50%; background: #2f6653; color: white; font-size: 11px; }
+.art-check-open { border: 1.5px solid #c9d0ca; background: transparent; }
+.art-line { height: 5px; border-radius: 6px; background: #e6e9e2; }
+.art-line-long { width: 93px; }
+.art-line-medium { width: 75px; }
+.art-line-short { width: 56px; }
+.art-spark { position: absolute; color: #f0b09a; }
+.art-spark-one { top: 2px; right: -1px; font-size: 21px; }
+.art-spark-two { bottom: 4px; left: 0; color: #d7e8d9; font-size: 18px; }
 
 .task-panel {
   padding: 24px;
@@ -225,8 +287,16 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
 
 @keyframes arrive { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
+@media (max-width: 620px) {
+  .page-header { min-height: 0; padding: 34px 30px; }
+  .header-art { display: none; }
+}
+
 @media (max-width: 520px) {
   .page { width: min(100% - 28px, 660px); padding-top: 58px; }
+  .page-header { padding: 29px 24px; border-radius: 15px; }
+  .eyebrow { margin-bottom: 15px; font-size: 10px; }
+  h1 { font-size: clamp(38px, 11vw, 48px); }
   .task-panel { padding: 18px; }
   .task-form { flex-direction: column; }
   .task-form button { min-height: 46px; }
