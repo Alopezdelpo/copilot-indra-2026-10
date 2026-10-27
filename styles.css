@@ -81,6 +81,7 @@ h1, h2, p { margin-top: 0; }
 
 h1 {
   margin-bottom: 14px;
+  color: #fffefa;
   font-family: 'Manrope', sans-serif;
   font-size: clamp(38px, 6vw, 54px);
   letter-spacing: -0.055em;
@@ -231,24 +232,61 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
   right: 22px;
   bottom: 22px;
   z-index: 2;
-  padding: 9px;
-  border: 1px solid rgba(32, 42, 39, 0.1);
+  padding: 10px;
+  border: 1px solid rgba(47, 102, 83, 0.16);
   border-radius: 50%;
-  background: var(--surface);
-  box-shadow: 0 8px 24px rgba(42, 50, 44, 0.15);
+  background: linear-gradient(145deg, #fffefa, #f1e9dc);
+  box-shadow:
+    0 12px 28px rgba(42, 50, 44, 0.16),
+    0 3px 8px rgba(42, 50, 44, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .clock-face {
   position: relative;
   width: 112px;
   aspect-ratio: 1;
-  border: 2px solid var(--green);
+  overflow: hidden;
+  border: 2px solid #47745f;
   border-radius: 50%;
-  background: #fffefa;
+  background: radial-gradient(circle at 38% 30%, #fffefa 0%, #fbf8f0 62%, #f1e9dc 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.78),
+    inset 0 2px 8px rgba(32, 42, 39, 0.08);
+}
+
+.clock-face::before,
+.clock-face::after {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.clock-face::before {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(47, 102, 83, 0.52) 0deg 1deg,
+    transparent 1deg 6deg
+  );
+  -webkit-mask: radial-gradient(transparent 0 78%, #000 78% 86%, transparent 86%);
+  mask: radial-gradient(transparent 0 78%, #000 78% 86%, transparent 86%);
+}
+
+.clock-face::after {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(196, 92, 71, 0.8) 0deg 1.5deg,
+    transparent 1.5deg 30deg
+  );
+  -webkit-mask: radial-gradient(transparent 0 72%, #000 72% 87%, transparent 87%);
+  mask: radial-gradient(transparent 0 72%, #000 72% 87%, transparent 87%);
 }
 
 .clock-number {
   position: absolute;
+  z-index: 1;
   color: var(--ink);
   font-size: 11px;
   font-weight: 700;
@@ -262,6 +300,7 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
 
 .clock-hand {
   position: absolute;
+  z-index: 2;
   bottom: 50%;
   left: 50%;
   border-radius: 4px;
@@ -275,6 +314,7 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
 
 .clock-pin {
   position: absolute;
+  z-index: 3;
   top: 50%;
   left: 50%;
   width: 8px;
@@ -287,7 +327,15 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
 
 @keyframes arrive { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 620px) {
+@media (max-width: 972px) {
+  .clock {
+    position: static;
+    width: max-content;
+    margin: 18px auto 24px;
+  }
+}
+
+@media (max-width: 700px) {
   .page-header { min-height: 0; padding: 34px 30px; }
   .header-art { display: none; }
 }
@@ -300,7 +348,7 @@ footer { padding-top: 18px; color: var(--muted); font-size: 12px; text-align: ce
   .task-panel { padding: 18px; }
   .task-form { flex-direction: column; }
   .task-form button { min-height: 46px; }
-  .clock { right: 12px; bottom: 12px; padding: 7px; }
+  .clock { padding: 7px; }
   .clock-face { width: 86px; }
   .clock-number-12 { top: 5px; }
   .clock-number-3 { right: 5px; }

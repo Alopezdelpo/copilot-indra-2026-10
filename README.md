@@ -9,7 +9,7 @@ Aplicación web sencilla para organizar tareas pendientes. Permite añadir tarea
 - Eliminar tareas de la lista.
 - Consultar cuántas tareas siguen pendientes.
 - Conservar la lista en el dispositivo mediante `localStorage`.
-- Ver un reloj analógico que muestra la hora local y se actualiza cada segundo.
+- Ver un reloj analógico que muestra la hora local y se actualiza cada segundo; hasta 972 px de ancho aparece en el flujo de la página para no tapar contenido.
 - Usar una interfaz adaptable a pantallas pequeñas y compatible con las preferencias de movimiento reducido.
 
 ## Cómo empezar
