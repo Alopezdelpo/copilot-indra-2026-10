@@ -44,3 +44,13 @@ Los cambios se guardan en el navegador y dispositivo actuales. No se sincronizan
 - CSS
 - JavaScript nativo
 - `localStorage` del navegador
+
+## Pruebas
+
+Las pruebas usan el ejecutor integrado de Node.js y no requieren instalar dependencias. Desde la raíz del proyecto, ejecuta:
+
+```sh
+node --test
+```
+
+Comprueban la carga, creación, finalización y eliminación de tareas, la persistencia en `localStorage`, los datos guardados no válidos y la inicialización del reloj.
